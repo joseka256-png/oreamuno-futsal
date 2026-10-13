@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oreamuno Futsal · Temporada 2026</title>
+<meta name="description" content="Oreamuno Futsal: club de fútbol sala de Oreamuno, Cartago. Categorías infantiles, juveniles, femenina y mayor. Inscripciones abiertas temporada 2026.">
+<meta property="og:title" content="Oreamuno Futsal · Temporada 2026">
+<meta property="og:description" content="Club de fútbol sala en Oreamuno, Cartago. Inscripciones abiertas.">
+<meta property="og:image" content="img/equipo.jpg">
+<link rel="icon" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{color-scheme:dark;
+    --navy:#0a1a4a; --navy-2:#11286e; --ink:#060d26;
+    --celeste:#62befa; --celeste-2:#b6e0fd;
+    --naranja:#f0560f; --naranja-2:#ff7433;
+    --blanco:#f5f8ff; --gris:#9aa7c7;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--ink);color:var(--blanco);line-height:1.6;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+  .display{font-family:Anton,Impact,sans-serif;letter-spacing:.02em;line-height:1;text-transform:uppercase}
+  .kicker{color:var(--naranja-2);font-weight:700;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase}
+  section{padding:88px 0}
+  h2.display{font-size:clamp(2.2rem,6vw,3.6rem);color:var(--celeste);margin:.3em 0 .4em}
+  .lead{color:var(--gris);max-width:62ch;font-size:1.05rem}
+
+  /* NAV */
+  header{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,box-shadow .3s}
+  header.solid{background:rgba(6,13,38,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(140,196,234,.15)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Anton,sans-serif;font-size:1.25rem;letter-spacing:.04em}
+  .brand img{width:40px;height:40px}
+  .brand span b{color:var(--celeste);font-weight:400}
+  .menu{display:flex;gap:26px;align-items:center;font-weight:600;font-size:.92rem}
+  .menu a:not(.btn){opacity:.85}.menu a:not(.btn):hover{opacity:1;color:var(--celeste)}
+  .burger{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;border:2px solid transparent;transition:transform .15s,background .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-o{background:var(--naranja);color:#fff}.btn-o:hover{background:var(--naranja-2)}
+  .btn-g{border-color:var(--celeste);color:var(--celeste)}.btn-g:hover{background:rgba(140,196,234,.12)}
+
+  /* HERO */
+  .hero{position:relative;padding:68px 0 56px;
+    background:radial-gradient(ellipse at 50% 110%,rgba(232,97,44,.4),transparent 55%),linear-gradient(180deg,var(--navy-2),var(--ink) 90%)}
+  .hero-photo{width:100%;max-width:1400px;margin:0 auto;aspect-ratio:1792/664;object-fit:cover;
+    -webkit-mask-image:linear-gradient(180deg,#000 80%,transparent);mask-image:linear-gradient(180deg,#000 80%,transparent)}
+  .hero-inner{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-top:8px}
+  .hero h1{font-size:clamp(1.6rem,4vw,2.6rem);color:#fff;margin:.3em 0}
+  .hero h1 span{color:var(--celeste)}
+  .hero p{max-width:52ch;color:var(--celeste-2)}
+  .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+  .bolt{color:var(--naranja-2)}
+
+  /* STATS */
+  .stats{background:var(--naranja);color:#fff;padding:0}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:26px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.25)}
+  .stat:last-child{border:0}
+  .stat b{display:block;font-family:Anton,sans-serif;font-size:2.4rem;line-height:1}
+  .stat span{font-size:.85rem;font-weight:600;opacity:.95}
+
+  /* CLUB */
+  .club .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  .crest{position:relative;justify-self:center;width:min(360px,80vw)}
+  .crest::before{content:"";position:absolute;inset:-12%;border-radius:50%;background:radial-gradient(circle,rgba(140,196,234,.35),transparent 65%);z-index:-1}
+  .values{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+  .value{background:rgba(140,196,234,.07);border:1px solid rgba(140,196,234,.18);border-radius:var(--radius);padding:16px}
+  .value h3{font-size:1rem;color:var(--celeste)}
+  .value p{font-size:.9rem;color:var(--gris)}
+
+  /* CATEGORIAS */
+  .cats{background:linear-gradient(180deg,var(--ink),var(--navy))}
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:36px}
+  .cat{position:relative;border-radius:var(--radius);padding:26px 22px;background:var(--navy-2);overflow:hidden;border:1px solid rgba(140,196,234,.15);transition:transform .2s,border-color .2s}
+  .cat:hover{transform:translateY(-4px);border-color:var(--naranja)}
+  .cat .age{font-family:Anton,sans-serif;font-size:2.6rem;color:var(--celeste);line-height:1}
+  .cat h3{margin:8px 0 6px;font-size:1.15rem}
+  .cat p{color:var(--gris);font-size:.9rem}
+  .cat::after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;border:10px solid rgba(232,97,44,.25)}
+
+  /* PARTIDOS */
+  .match-list{display:grid;gap:12px;margin-top:32px}
+  .match{display:grid;grid-template-columns:110px 1fr auto;gap:18px;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(140,196,234,.15);border-radius:var(--radius);padding:16px 20px}
+  .match .date{font-family:Anton,sans-serif;font-size:1.3rem;color:var(--naranja-2);line-height:1.1}
+  .match .date small{display:block;font-family:Inter;font-size:.75rem;color:var(--gris);font-weight:600}
+  .match .vs{font-weight:700}
+  .match .vs em{font-style:normal;color:var(--gris);font-weight:500;font-size:.85rem;display:block}
+  .tag{font-size:.75rem;font-weight:700;padding:6px 12px;border-radius:999px;background:rgba(140,196,234,.15);color:var(--celeste);white-space:nowrap}
+  .tag.win{background:rgba(70,200,120,.18);color:#7fe0a5}
+  .note{margin-top:14px;font-size:.82rem;color:var(--gris)}
+
+  /* GALERIA */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:160px;gap:10px;margin-top:32px}
+  .ph{border-radius:12px;background:var(--navy-2) url(img/equipo.jpg) center/cover;position:relative;overflow:hidden}
+  .ph:nth-child(1){grid-column:span 2;grid-row:span 2;background-position:48% 30%;background-size:300%}
+  .ph:nth-child(2){background-position:12% 40%;background-size:520%}
+  .ph:nth-child(3){background-position:88% 40%;background-size:520%}
+  .ph:nth-child(4){background-position:30% 40%;background-size:520%}
+  .ph:nth-child(5){background-position:70% 40%;background-size:520%}
+  .ph::after{content:attr(data-l);position:absolute;left:10px;bottom:8px;font-size:.75rem;font-weight:700;background:rgba(6,13,38,.75);padding:4px 10px;border-radius:999px}
+
+  /* PATROCINADORES */
+  .sponsors{background:var(--blanco);color:var(--ink)}
+  .sponsors h2.display{color:var(--navy)}
+  .sponsors .lead{color:#4a5675}
+  .sp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:32px}
+  .sp{height:110px;border-radius:var(--radius);display:grid;place-items:center;background:#fff;border:1px solid #dfe6f5;font-weight:800;font-size:1.2rem;color:var(--navy)}
+  .sp.empty{border:2px dashed #b9c6e2;color:#7d8bad;font-weight:600;font-size:.9rem;background:transparent}
+
+  /* INSCRIPCION */
+  .join{background:radial-gradient(ellipse at 0% 0%,rgba(232,97,44,.35),transparent 50%),linear-gradient(135deg,var(--navy-2),var(--ink))}
+  .join .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  form{background:rgba(255,255,255,.05);border:1px solid rgba(140,196,234,.2);border-radius:18px;padding:26px;display:grid;gap:14px}
+  label{font-size:.85rem;font-weight:600;color:var(--celeste-2);display:grid;gap:6px}
+  input,select,textarea{font:inherit;color:#fff;background:rgba(6,13,38,.6);border:1px solid rgba(140,196,234,.25);border-radius:10px;padding:12px 14px}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--naranja);border-color:transparent}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .checks{list-style:none;display:grid;gap:12px;margin-top:22px}
+  .checks li{display:flex;gap:12px}
+  .checks li::before{content:"⚡";color:var(--naranja-2)}
+
+
+  /* MENSUALIDAD */
+  .pay{background:linear-gradient(180deg,var(--navy),var(--ink))}
+  .pay-card{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;background:rgba(98,190,250,.08);border:1px solid rgba(98,190,250,.25);border-radius:20px;padding:32px}
+  .steps{list-style:none;display:grid;gap:14px;margin-top:20px;counter-reset:s}
+  .steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;color:var(--celeste-2)}
+  .steps li::before{counter-increment:s;content:counter(s);width:34px;height:34px;border-radius:50%;background:var(--naranja);color:#fff;font-weight:800;display:grid;place-items:center}
+  .sinpe{background:var(--ink);border-radius:16px;padding:24px;display:grid;gap:14px;text-align:center}
+  .sinpe small{color:var(--gris);font-weight:600;letter-spacing:.15em;text-transform:uppercase;font-size:.75rem}
+  .sinpe .num{font-family:Anton,Impact,sans-serif;font-size:2.6rem;color:var(--celeste);letter-spacing:.04em;line-height:1;user-select:all}
+  .sinpe .due{font-size:.9rem;color:var(--celeste-2)}
+  .sinpe .btn{justify-content:center}
+  .copy-btn{background:none;border:1px solid rgba(98,190,250,.4);color:var(--celeste);border-radius:999px;padding:8px 14px;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+  @media (max-width:860px){.pay-card{grid-template-columns:1fr;padding:22px}}
+
+  /* FOOTER */
+  footer{padding:48px 0 30px;background:#040919;border-top:3px solid var(--naranja)}
+  .foot{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px}
+  .foot h4{color:var(--celeste);margin-bottom:10px;font-size:.95rem}
+  .foot p,.foot a{color:var(--gris);font-size:.9rem}
+  .foot a:hover{color:#fff}
+  .copy{margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);font-size:.8rem;color:#6b7799;text-align:center}
+
+  .wa-float{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .wa-float svg{width:30px;height:30px;fill:#fff}
+
+  .reveal{transition:transform .7s}
+  .js .reveal:not(.on){transform:translateY(16px)}
+
+  @media (max-width:860px){
+    .menu{position:fixed;inset:68px 0 auto;flex-direction:column;background:rgba(6,13,38,.97);padding:24px;gap:18px;transform:translateY(-130%);transition:transform .3s}
+    .menu.open{transform:none}
+    .burger{display:block}
+    .club .grid,.join .grid,.foot{grid-template-columns:1fr}
+    .crest{order:-1;width:min(240px,60vw)}
+    .stats .wrap{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(2){border-right:0}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+    .match{grid-template-columns:80px 1fr}
+    .match .tag{grid-column:2;justify-self:start}
+    .hero-inner{grid-template-columns:1fr}
+    .hero-photo{aspect-ratio:4/3;object-position:50% 40%}
+  }
+  @media (max-width:480px){.values,.row{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#inicio"><img src="img/escudo.png" alt="Escudo Oreamuno Futsal"><span>OREAMUNO <b>FUTSAL</b></span></a>
+    <button class="burger" aria-label="Abrir menú" id="burger">☰</button>
+    <nav class="menu" id="menu">
+      <a href="#club">El club</a>
+      <a href="#categorias">Categorías</a>
+      <a href="#partidos">Partidos</a>
+      <a href="#galeria">Galería</a>
+      <a href="#patrocinadores">Patrocinadores</a>
+      <a href="#mensualidad">Mensualidad</a>
+      <a class="btn btn-o" href="#inscripcion">Inscribite</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <img class="hero-photo" src="img/equipo.jpg" alt="Jugadores de todas las categorías de Oreamuno Futsal, temporada 2026">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="kicker"><span class="bolt">⚡</span> Fútbol sala · Oreamuno, Cartago</div>
+      <h1 class="display">Una sola camiseta, <span>una sola familia</span></h1>
+      <p>Formamos jugadores y jugadoras desde la niñez hasta la categoría mayor. Inscripciones abiertas para la temporada 2026.</p>
+    </div>
+    <div class="ctas">
+      <a class="btn btn-o" href="#inscripcion">Inscribí a tu hijo/a</a>
+      <a class="btn btn-g" href="#partidos">Próximos partidos</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS (cifras de ejemplo: confirmar con el club) -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b>6</b><span>Categorías</span></div>
+    <div class="stat"><b>100+</b><span>Jugadores</span></div>
+    <div class="stat"><b>2026</b><span>Temporada activa</span></div>
+    <div class="stat"><b>1</b><span>Familia</span></div>
+  </div>
+</div>
+
+<!-- CLUB -->
+<section class="club" id="club">
+  <div class="wrap grid">
+    <div class="reveal">
+      <div class="kicker">Quiénes somos</div>
+      <h2 class="display">Más que un equipo</h2>
+      <p class="lead">Oreamuno Futsal es un club de fútbol sala que nace en Oreamuno de Cartago con una meta clara: darle a niños, jóvenes y adultos un espacio para competir, crecer y representar a su comunidad con orgullo.</p>
+      <div class="values">
+        <div class="value"><h3>Formación</h3><p>Técnica, táctica y valores desde las primeras edades.</p></div>
+        <div class="value"><h3>Competencia</h3><p>Participación en ligas y torneos regionales y nacionales.</p></div>
+        <div class="value"><h3>Inclusión</h3><p>Equipos masculinos y femeninos en todas las edades.</p></div>
+        <div class="value"><h3>Comunidad</h3><p>Familias, patrocinadores y afición del cantón.</p></div>
+      </div>
+    </div>
+    <img class="crest reveal" src="img/escudo.png" alt="Escudo de Oreamuno Futsal">
+  </div>
+</section>
+
+<!-- CATEGORIAS (edades de ejemplo: ajustar a las del club) -->
+<section class="cats" id="categorias">
+  <div class="wrap">
+    <div class="kicker">Categorías</div>
+    <h2 class="display">Un lugar para cada edad</h2>
+    <p class="lead">Entrenamientos por categoría con entrenadores dedicados. Consultá horarios y cupos por WhatsApp.</p>
+    <div class="cat-grid">
+      <article class="cat reveal"><div class="age">U8 · U10</div><h3>Escuela infantil</h3><p>Primer contacto con el balón: coordinación, juego y diversión.</p></article>
+      <article class="cat reveal"><div class="age">U12 · U14</div><h3>Formativas</h3><p>Fundamentos técnicos y primeras competencias oficiales.</p></article>
+      <article class="cat reveal"><div class="age">U16 · U18</div><h3>Juvenil</h3><p>Alto rendimiento y preparación para la categoría mayor.</p></article>
+      <article class="cat reveal"><div class="age">FEM</div><h3>Femenino</h3><p>Equipos de niñas y jóvenes en crecimiento cada temporada.</p></article>
+      <article class="cat reveal"><div class="age">MAYOR</div><h3>Primer equipo</h3><p>El orgullo del cantón en la cancha cada fin de semana.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- PARTIDOS (datos de ejemplo) -->
+<section id="partidos">
+  <div class="wrap">
+    <div class="kicker">Calendario</div>
+    <h2 class="display">Próximos partidos</h2>
+    <p class="lead">Vení a apoyar al equipo. Las fechas se actualizan cada semana.</p>
+    <div class="match-list">
+      <div class="match reveal"><div class="date">18 OCT<small>SÁB · 4:00 PM</small></div><div class="vs">Oreamuno vs Rival por confirmar<em>Mayor · Gimnasio local</em></div><span class="tag">Local</span></div>
+      <div class="match reveal"><div class="date">19 OCT<small>DOM · 10:00 AM</small></div><div class="vs">Rival por confirmar vs Oreamuno<em>U14 · Visita</em></div><span class="tag">Visita</span></div>
+      <div class="match reveal"><div class="date">11 OCT<small>SÁB · FINAL</small></div><div class="vs">Oreamuno 5 – 3 Rival<em>U16 · Resultado</em></div><span class="tag win">Victoria</span></div>
+    </div>
+    <p class="note">* Calendario de muestra para la propuesta.</p>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Galería</div>
+    <h2 class="display">Temporada 2026</h2>
+    <div class="gallery">
+      <div class="ph" data-l="Primer equipo"></div>
+      <div class="ph" data-l="Juvenil"></div>
+      <div class="ph" data-l="Femenino"></div>
+      <div class="ph" data-l="Infantil"></div>
+      <div class="ph" data-l="Porteros"></div>
+    </div>
+    <p class="note">Las fotos se reemplazan por las del club (partidos, entrenamientos, premiaciones).</p>
+  </div>
+</section>
+
+<!-- PATROCINADORES -->
+<section class="sponsors" id="patrocinadores">
+  <div class="wrap">
+    <div class="kicker">Patrocinadores</div>
+    <h2 class="display">Gracias a quienes nos apoyan</h2>
+    <p class="lead">Las empresas que hacen posible cada temporada. ¿Querés ver tu marca en nuestras camisetas y en esta página? Escribinos.</p>
+    <div class="sp-grid">
+      <div class="sp">La Rivera</div>
+      <div class="sp">Patrocinador</div>
+      <div class="sp">Patrocinador</div>
+      <a class="sp empty" href="#inscripcion">+ Tu marca aquí</a>
+    </div>
+  </div>
+</section>
+
+<!-- MENSUALIDAD -->
+<section class="pay" id="mensualidad">
+  <div class="wrap">
+    <div class="kicker">Jugadores inscritos</div>
+    <h2 class="display">Pago de mensualidad</h2>
+    <div class="pay-card">
+      <div>
+        <p class="lead" style="color:var(--celeste-2)">La mensualidad es de ₡5.000 y se paga los primeros 7 días de cada mes por SINPE Móvil. Después de pagar, subí el comprobante para que la directiva lo verifique.</p>
+        <ol class="steps">
+          <li>Hacé el SINPE Móvil al número del club.</li>
+          <li>Tomá captura del comprobante.</li>
+          <li>Subilo en el formulario de pagos con el nombre del jugador y el mes.</li>
+        </ol>
+      </div>
+      <div class="sinpe">
+        <small>SINPE Móvil</small>
+        <div class="num" id="sinpe">6280-7725</div>
+        <button class="copy-btn" type="button" id="copySinpe">Copiar número</button>
+        <div class="due">Mensualidad: <b>₡5.000</b> · fecha límite: día 7 de cada mes</div>
+        <a class="btn btn-o" href="https://apps.powerapps.com/play/e/default-297e5c51-c04a-4a65-8f00-cf1262a858c3/a/2f8e81d3-2d18-4452-82ed-3026ba58ab90?tenantId=297e5c51-c04a-4a65-8f00-cf1262a858c3&amp;hint=6f46eab7-7631-49d7-9c2d-b2994a3e6582&amp;sourcetime=1783472700758" target="_blank" rel="noopener">Subir comprobante</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPCION -->
+<section class="join" id="inscripcion">
+  <div class="wrap grid">
+    <div class="reveal">
+      <div class="kicker">Inscripciones abiertas</div>
+      <h2 class="display">Sumate al equipo</h2>
+      <p class="lead" style="color:var(--celeste-2)">Llená el formulario y te contactamos por WhatsApp con horarios, costos y la categoría que corresponde.</p>
+      <ul class="checks">
+        <li>Clase de prueba sin costo</li>
+        <li>Entrenadores por categoría</li>
+        <li>Uniforme oficial de la temporada</li>
+        <li>Torneos y convivios durante el año</li>
+      </ul>
+    </div>
+    <form id="form" class="reveal">
+      <label>Nombre del jugador/a<input name="nombre" required></label>
+      <div class="row">
+        <label>Edad<input name="edad" type="number" min="4" max="60" required></label>
+        <label>Categoría
+          <select name="cat">
+            <option>Escuela infantil</option><option>Formativas</option><option>Juvenil</option>
+            <option>Femenino</option><option>Mayor</option><option>Patrocinio</option>
+          </select>
+        </label>
+      </div>
+      <label>Nombre del encargado/a<input name="encargado"></label>
+      <label>Mensaje (opcional)<textarea name="msg" rows="3"></textarea></label>
+      <button class="btn btn-o" type="submit" style="justify-content:center">Enviar por WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#inicio"><img src="img/escudo.png" alt=""><span>OREAMUNO <b>FUTSAL</b></span></a>
+        <p style="margin-top:12px">Club de fútbol sala de Oreamuno, Cartago, Costa Rica.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p><a href="#" class="wa-link">WhatsApp: +506 0000-0000</a></p>
+        <p>SINPE Móvil: 6280-7725</p>
+        <p>Gimnasio: por confirmar</p>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <p><a href="https://www.facebook.com/oreamuno.futsal" target="_blank" rel="noopener">Facebook · /oreamuno.futsal</a></p>
+        <p><a href="#">Instagram</a></p>
+      </div>
+    </div>
+    <div class="copy">© 2026 Oreamuno Futsal · Todos los derechos reservados · <a href="panel.html">Panel de administración</a></div>
+  </div>
+</footer>
+
+<a class="wa-float wa-link" href="#" aria-label="Escribir por WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 32 32"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.3 3.4 14.7 14.7 0 0 0 5.7 5c2.1.9 2.9 1 4 .8a3.4 3.4 0 0 0 2.2-1.6 2.8 2.8 0 0 0 .2-1.6c-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+
+<script>
+  document.documentElement.classList.add("js");
+  // ⚠️ Cambiar por el número real del club (formato 506XXXXXXXX)
+  const WHATSAPP = "50600000000";
+  const base = "https://wa.me/" + WHATSAPP;
+  document.querySelectorAll(".wa-link").forEach(a => a.href = base + "?text=" + encodeURIComponent("¡Hola Oreamuno Futsal! Quiero más información."));
+
+  document.getElementById("form").addEventListener("submit", e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const txt = `¡Hola Oreamuno Futsal! ⚽\nQuiero información de inscripción.\n\nJugador/a: ${f.get("nombre")}\nEdad: ${f.get("edad")}\nCategoría: ${f.get("cat")}\nEncargado/a: ${f.get("encargado") || "-"}\n${f.get("msg") ? "Mensaje: " + f.get("msg") : ""}`;
+    window.open(base + "?text=" + encodeURIComponent(txt), "_blank");
+  });
+
+
+  const cb = document.getElementById("copySinpe");
+  cb.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText("62807725"); cb.textContent = "Número copiado"; }
+    catch { const r = document.createRange(); r.selectNodeContents(document.getElementById("sinpe")); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); cb.textContent = "Número seleccionado"; }
+    setTimeout(() => cb.textContent = "Copiar número", 2000);
+  });
+
+  const header = document.getElementById("top");
+  addEventListener("scroll", () => header.classList.toggle("solid", scrollY > 40), {passive:true});
+
+  const menu = document.getElementById("menu");
+  document.getElementById("burger").onclick = () => menu.classList.toggle("open");
+  menu.querySelectorAll("a").forEach(a => a.onclick = () => menu.classList.remove("open"));
+
+  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add("on"); io.unobserve(x.target); } }), {threshold:.15});
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>

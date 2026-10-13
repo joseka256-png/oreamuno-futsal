@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Panel Oreamuno Futsal</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Panel de directiva: barra superior, KPIs, filtros y tabla de pagos */
+  :root{color-scheme:dark;
+    --ink:#060d26; --navy:#0a1a4a; --navy-2:#11286e; --panel:#0d1a42;
+    --line:rgba(98,190,250,.16); --celeste:#62befa; --celeste-2:#b6e0fd;
+    --naranja:#f0560f; --naranja-2:#ff7433; --fg:#f5f8ff; --gris:#9aa7c7;
+    --ok:#4fd18b; --warn:#f5b83d; --bad:#ff6b6b;
+    --display:Anton,Impact,"Arial Narrow",sans-serif; --body:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--body);background:var(--ink);color:var(--fg);line-height:1.5;font-size:15px}
+  .wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+  button,input,select{font:inherit;color:inherit}
+  button{cursor:pointer}
+  :focus-visible{outline:2px solid var(--naranja);outline-offset:2px}
+
+  .demo{background:var(--warn);color:#2a1d00;text-align:center;font-size:.85rem;font-weight:600;padding:8px 16px}
+  header{background:var(--navy);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+  .brand{text-decoration:none;color:var(--fg);display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:1.15rem;letter-spacing:.04em}
+  .brand img{width:36px;height:36px}
+  .brand b{color:var(--celeste);font-weight:400}
+  .user{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--gris)}
+  .avatar{width:32px;height:32px;border-radius:50%;background:var(--naranja);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.8rem}
+
+  main{padding-block:28px 60px;display:grid;gap:22px}
+  h1{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:.02em;text-transform:uppercase;line-height:1;color:var(--celeste);text-wrap:balance}
+  .sub{color:var(--gris);font-size:.9rem;margin-top:6px}
+  .head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-weight:700;border:1px solid var(--line);background:transparent;color:var(--celeste)}
+  .btn:hover{background:rgba(98,190,250,.1)}
+  .btn-o{background:var(--naranja);border-color:var(--naranja);color:#fff}.btn-o:hover{background:var(--naranja-2)}
+
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:4px}
+  .kpi span{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
+  .kpi b{font-family:var(--display);font-size:2rem;font-weight:400;line-height:1.1;font-variant-numeric:tabular-nums}
+  .kpi small{font-size:.8rem;color:var(--gris)}
+  .kpi.ok b{color:var(--ok)}.kpi.warn b{color:var(--warn)}.kpi.bad b{color:var(--bad)}.kpi.money b{color:var(--celeste)}
+
+  .grid2{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;min-width:0}
+  .card h2{font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--celeste-2);padding:16px 18px 0}
+
+  .filters{display:flex;flex-wrap:wrap;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}
+  .filters input,.filters select{background:var(--ink);border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-width:0}
+  .filters input{flex:1 1 200px}
+  .filters select{flex:0 1 auto}
+  .table-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:860px}
+  th{text-align:left;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);font-weight:700;padding:12px 18px;border-bottom:1px solid var(--line)}
+  td{padding:12px 18px;border-bottom:1px solid var(--line);vertical-align:middle}
+  tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:rgba(98,190,250,.05)}
+  td.num{font-variant-numeric:tabular-nums}
+  .who b{display:block;white-space:nowrap}.who small{color:var(--gris);white-space:nowrap}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:.75rem;font-weight:700;white-space:nowrap}
+  .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .p-ok{color:var(--ok);background:rgba(79,209,139,.12)}
+  .p-pend{color:var(--warn);background:rgba(245,184,61,.12)}
+  .p-bad{color:var(--bad);background:rgba(255,107,107,.12)}
+  .p-none{color:var(--gris);background:rgba(154,167,199,.12)}
+  .acts{display:flex;gap:6px}
+  .ic{border:1px solid var(--line);background:transparent;border-radius:8px;padding:6px 10px;font-size:.8rem;font-weight:600;color:var(--celeste-2)}
+  .ic:hover{background:rgba(98,190,250,.1)}
+  .ic.ok{color:var(--ok)}.ic.bad{color:var(--bad)}
+  .link{background:none;border:0;color:var(--celeste);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+  .empty{padding:30px 18px;color:var(--gris);text-align:center}
+
+  .bars{display:grid;gap:14px;padding:16px 18px 20px}
+  .bar-row{display:grid;gap:6px}
+  .bar-row .lbl{display:flex;justify-content:space-between;font-size:.85rem}
+  .bar-row .lbl span{color:var(--gris);font-variant-numeric:tabular-nums}
+  .track{height:10px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;display:flex}
+  .track i{display:block;height:100%}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;padding:0 18px 18px;font-size:.75rem;color:var(--gris)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend span::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--c)}
+  .side{display:grid;gap:18px}
+  .late{list-style:none;padding:12px 18px 18px;display:grid;gap:10px}
+  .late li{display:flex;justify-content:space-between;gap:10px;font-size:.88rem}
+  .late li span{color:var(--bad);font-weight:700;white-space:nowrap}
+
+  dialog{margin:auto;border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--fg);width:min(420px,100% - 32px);padding:0}
+  dialog::backdrop{background:rgba(3,7,20,.7)}
+  .dlg{padding:22px;display:grid;gap:14px}
+  .receipt{background:#fff;color:#1b2440;border-radius:12px;padding:20px;display:grid;gap:8px;font-size:.88rem}
+  .receipt .r-top{display:flex;justify-content:space-between;font-weight:800;color:#0a1a4a}
+  .receipt .amt{font-family:var(--display);font-size:2rem;color:#0a1a4a}
+  .receipt .row{display:flex;justify-content:space-between;gap:10px;border-top:1px dashed #cdd5e8;padding-top:6px}
+  .receipt .row span:first-child{color:#5b6788}
+  .dlg .acts{justify-content:flex-end}
+
+  .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--ink);padding:10px 18px;border-radius:999px;font-weight:700;font-size:.88rem;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+
+  @media (max-width:1000px){.kpis{grid-template-columns:repeat(3,1fr)}.grid2{grid-template-columns:1fr}}
+  @media (max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.user span{display:none}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="demo">Maqueta de demostración con datos de ejemplo. En la versión real se entra con usuario y contraseña de la directiva.</div>
+
+<header>
+  <div class="wrap top">
+    <a class="brand" href="index.html"><img src="img/escudo.png" alt="">OREAMUNO <b>FUTSAL</b></a>
+    <div class="user"><span>Tesorería · Directiva</span><div class="avatar">TD</div></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <div>
+      <h1>Mensualidades</h1>
+      <p class="sub">Comprobantes de SINPE Móvil al 6280-7725 · pago del día 1 al 7 de cada mes</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <select id="mes" class="btn" aria-label="Mes">
+        <option value="2026-10">Octubre 2026</option>
+        <option value="2026-09">Setiembre 2026</option>
+        <option value="2026-08">Agosto 2026</option>
+      </select>
+      <button class="btn btn-o" id="export" type="button">Exportar a Excel</button>
+    </div>
+  </div>
+
+  <section class="kpis" aria-label="Resumen del mes">
+    <div class="kpi"><span>Jugadores</span><b id="k-total">0</b><small>activos</small></div>
+    <div class="kpi ok"><span>Al día</span><b id="k-ok">0</b><small id="k-okp">0% del total</small></div>
+    <div class="kpi warn"><span>Por verificar</span><b id="k-pend">0</b><small>comprobantes nuevos</small></div>
+    <div class="kpi bad"><span>Sin pagar</span><b id="k-bad">0</b><small id="k-badnote">vence el día 7</small></div>
+    <div class="kpi money"><span>Recaudado</span><b id="k-money">₡0</b><small id="k-moneyof">de ₡0 esperado</small></div>
+  </section>
+
+  <div class="grid2">
+    <section class="card">
+      <div class="filters">
+        <input id="q" type="search" placeholder="Buscar jugador o encargado" aria-label="Buscar">
+        <select id="cat" aria-label="Categoría"><option value="">Todas las categorías</option></select>
+        <select id="est" aria-label="Estado">
+          <option value="">Todos los estados</option>
+          <option value="pend">Por verificar</option>
+          <option value="ok">Verificado</option>
+          <option value="bad">Rechazado</option>
+          <option value="none">Sin pagar</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Jugador</th><th>Categoría</th><th>Monto</th><th>Fecha</th><th>Comprobante</th><th>Estado</th><th>Acción</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="empty" hidden>No hay pagos con esos filtros.</div>
+    </section>
+
+    <aside class="side">
+      <section class="card">
+        <h2>Pagos por categoría</h2>
+        <div class="bars" id="bars"></div>
+        <div class="legend">
+          <span style="--c:var(--ok)">Verificado</span>
+          <span style="--c:var(--warn)">Por verificar</span>
+          <span style="--c:var(--bad)">Sin pagar o rechazado</span>
+        </div>
+      </section>
+      <section class="card">
+        <h2>Atrasados 2+ meses</h2>
+        <ul class="late" id="late"></ul>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<dialog id="dlg">
+  <div class="dlg">
+    <strong id="d-title">Comprobante</strong>
+    <div class="receipt">
+      <div class="r-top"><span>SINPE MÓVIL</span><span>✓</span></div>
+      <div class="amt" id="d-amt">₡5.000</div>
+      <div class="row"><span>Destino</span><span>6280-7725</span></div>
+      <div class="row"><span>Origen</span><span id="d-from"></span></div>
+      <div class="row"><span>Detalle</span><span id="d-det"></span></div>
+      <div class="row"><span>Fecha</span><span id="d-date"></span></div>
+      <div class="row"><span>Referencia</span><span id="d-ref"></span></div>
+    </div>
+    <div class="acts">
+      <button class="ic bad" type="button" id="d-bad">Rechazar</button>
+      <button class="ic ok" type="button" id="d-ok">Verificar pago</button>
+      <button class="ic" type="button" id="d-close">Cerrar</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" hidden></div>
+
+<script>
+  const FEE = 5000;
+  const CATS = ["Escuela infantil","Formativas","Juvenil","Femenino","Mayor"];
+  const names = [
+    ["Mateo Brenes","Carolina Solano","Escuela infantil"],["Sebastián Coto","Andrés Coto","Escuela infantil"],
+    ["Valeria Quirós","Marta Ramírez","Femenino"],["Isaac Monge","Laura Monge","Formativas"],
+    ["Daniel Aguilar","Jorge Aguilar","Juvenil"],["Emilia Navarro","Paola Navarro","Femenino"],
+    ["Samuel Vargas","Ana Vargas","Formativas"],["Thiago Calderón","Luis Calderón","Escuela infantil"],
+    ["Joshua Mora","—","Mayor"],["Gabriel Pereira","Silvia Pereira","Juvenil"],
+    ["Luciana Arias","Karla Arias","Femenino"],["Matías Gómez","Ernesto Gómez","Formativas"],
+    ["Kevin Ureña","—","Mayor"],["Santiago Masís","Lorena Masís","Juvenil"],
+    ["Ian Castillo","Rebeca Castillo","Escuela infantil"],["Fabián Jiménez","—","Mayor"],
+    ["Camila Rojas","Diana Rojas","Femenino"],["Alejandro Leiva","Óscar Leiva","Formativas"],
+    ["Esteban Fallas","Patricia Fallas","Juvenil"],["Mauricio Cordero","—","Mayor"],
+    ["Ariana Salas","Gabriela Salas","Femenino"],["Diego Chaves","Roberto Chaves","Formativas"],
+    ["Nicolás Bonilla","Andrea Bonilla","Escuela infantil"],["José Pablo Sanabria","—","Mayor"]
+  ];
+  // Estado de ejemplo por mes: ok, pend, bad, none
+  const pattern = {
+    "2026-10":"ok pend ok none ok pend ok ok none ok pend ok ok none ok bad ok pend ok ok none ok pend ok".split(" "),
+    "2026-09":"ok ok ok none ok ok ok ok none ok ok ok ok ok ok ok ok ok ok ok none ok ok ok".split(" "),
+    "2026-08":"ok ok ok ok ok ok ok ok none ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok".split(" ")
+  };
+  const MES = {"2026-10":"Octubre","2026-09":"Setiembre","2026-08":"Agosto"};
+  const data = {};
+  for (const m in pattern) data[m] = names.map(([n,e,c],i) => {
+    const st = pattern[m][i], day = 1 + ((i*3) % 7);
+    return {id:i, nombre:n, encargado:e, cat:c, estado:st, monto: st==="none"?0:FEE,
+      fecha: st==="none" ? null : `${String(day).padStart(2,"0")}/${m.slice(5)}/2026`,
+      ref: st==="none" ? null : String(70000000 + i*137911 + Number(m.slice(5))*991).slice(0,8)};
+  });
+
+  const $ = id => document.getElementById(id);
+  const crc = n => "₡" + n.toLocaleString("es-CR");
+  const LBL = {ok:["Verificado","p-ok"],pend:["Por verificar","p-pend"],bad:["Rechazado","p-bad"],none:["Sin pagar","p-none"]};
+  CATS.forEach(c => $("cat").insertAdjacentHTML("beforeend", `<option>${c}</option>`));
+
+  let current = null;
+  function render(){
+    const m = $("mes").value, list = data[m];
+    const q = $("q").value.trim().toLowerCase(), cat = $("cat").value, est = $("est").value;
+    const f = list.filter(r => (!cat || r.cat===cat) && (!est || r.estado===est) &&
+      (!q || (r.nombre+" "+r.encargado).toLowerCase().includes(q)));
+    $("rows").innerHTML = f.map(r => `<tr>
+      <td class="who"><b>${r.nombre}</b><small>${r.encargado==="—"?"Mayor de edad":"Encargado: "+r.encargado}</small></td>
+      <td>${r.cat}</td>
+      <td class="num">${r.monto?crc(r.monto):"—"}</td>
+      <td class="num">${r.fecha||"—"}</td>
+      <td>${r.fecha?`<button class="link" data-view="${r.id}" type="button">Ver</button>`:"—"}</td>
+      <td><span class="pill ${LBL[r.estado][1]}">${LBL[r.estado][0]}</span></td>
+      <td><div class="acts">${r.estado==="pend"
+        ? `<button class="ic ok" data-ok="${r.id}" type="button">Verificar</button><button class="ic bad" data-bad="${r.id}" type="button">Rechazar</button>`
+        : r.estado==="none" ? `<button class="ic" data-remind="${r.id}" type="button">Recordar</button>` : ""}</div></td>
+    </tr>`).join("");
+    $("empty").hidden = f.length>0;
+
+    const c = s => list.filter(r=>r.estado===s).length;
+    $("k-total").textContent = list.length;
+    $("k-ok").textContent = c("ok");
+    $("k-okp").textContent = Math.round(c("ok")/list.length*100) + "% del total";
+    $("k-pend").textContent = c("pend");
+    $("k-bad").textContent = c("none") + c("bad");
+    $("k-badnote").textContent = m==="2026-10" ? "vence el día 7" : "mes cerrado";
+    $("k-money").textContent = crc(c("ok")*FEE);
+    $("k-moneyof").textContent = "de " + crc(list.length*FEE) + " esperado";
+
+    $("bars").innerHTML = CATS.map(ct => {
+      const l = list.filter(r=>r.cat===ct), t = l.length || 1;
+      const ok = l.filter(r=>r.estado==="ok").length, p = l.filter(r=>r.estado==="pend").length, b = l.length-ok-p;
+      return `<div class="bar-row"><div class="lbl">${ct}<span>${ok}/${l.length}</span></div>
+        <div class="track"><i style="width:${ok/t*100}%;background:var(--ok)"></i><i style="width:${p/t*100}%;background:var(--warn)"></i><i style="width:${b/t*100}%;background:var(--bad)"></i></div></div>`;
+    }).join("");
+
+    const late = names.map((n,i)=>({n:n[0], k:["2026-10","2026-09","2026-08"].filter(mm=>["none","bad"].includes(data[mm][i].estado)).length})).filter(x=>x.k>=2);
+    $("late").innerHTML = late.length ? late.map(x=>`<li>${x.n}<span>${x.k} meses</span></li>`).join("") : `<li>Nadie con 2 o más meses pendientes.</li>`;
+  }
+
+  function setState(id, st){
+    const r = data[$("mes").value][id]; r.estado = st;
+    toast(st==="ok" ? `Pago de ${r.nombre} verificado` : `Pago de ${r.nombre} rechazado`);
+    render();
+  }
+  function toast(t){ const el=$("toast"); el.textContent=t; el.hidden=false; clearTimeout(el._t); el._t=setTimeout(()=>el.hidden=true,2200); }
+
+  $("rows").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.ok) setState(+b.dataset.ok,"ok");
+    if (b.dataset.bad) setState(+b.dataset.bad,"bad");
+    if (b.dataset.remind) { const r=data[$("mes").value][+b.dataset.remind]; toast(`Recordatorio listo para ${r.encargado==="—"?r.nombre:r.encargado}`); }
+    if (b.dataset.view) {
+      const r = data[$("mes").value][+b.dataset.view]; current = r.id;
+      $("d-title").textContent = r.nombre + " · " + MES[$("mes").value];
+      $("d-amt").textContent = crc(r.monto);
+      $("d-from").textContent = r.encargado==="—" ? r.nombre : r.encargado;
+      $("d-det").textContent = "Mensualidad " + r.nombre.split(" ")[0];
+      $("d-date").textContent = r.fecha; $("d-ref").textContent = r.ref;
+      $("d-ok").hidden = $("d-bad").hidden = r.estado!=="pend";
+      $("dlg").showModal();
+    }
+  });
+  $("d-ok").onclick = () => { $("dlg").close(); setState(current,"ok"); };
+  $("d-bad").onclick = () => { $("dlg").close(); setState(current,"bad"); };
+  $("d-close").onclick = () => $("dlg").close();
+  $("export").onclick = () => toast("En la versión real descarga el reporte del mes en Excel");
+  ["mes","cat","est"].forEach(id => $(id).addEventListener("change", render));
+  $("q").addEventListener("input", render);
+  render();
+</script>
+</body>
+</html>
